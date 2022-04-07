@@ -42,10 +42,8 @@ public class InterviewTest1Application implements CommandLineRunner {
 
 	public void fastAddWatches(List<Watch> watches) {
 		
-		for(Watch watch : watches) {
-			watchRepository.save(watch);
-		}
-
+		watches.parallelStream().forEach(w -> watchRepository.save(w));
+		
 	}
 	
 	public void removeOutOfStockWatches() {
