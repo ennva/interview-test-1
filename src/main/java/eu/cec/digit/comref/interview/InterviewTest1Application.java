@@ -2,6 +2,8 @@ package eu.cec.digit.comref.interview;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,6 +16,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @SpringBootApplication
 public class InterviewTest1Application implements CommandLineRunner {
+	
+	private static final Logger log = LoggerFactory.getLogger(InterviewTest1Application.class);
 
 	@Autowired
 	private WatchRepository watchRepository;
@@ -37,7 +41,7 @@ public class InterviewTest1Application implements CommandLineRunner {
 	}
 
 	public void fastAddWatches(List<Watch> watches) {
-
+		
 		for(Watch watch : watches) {
 			watchRepository.save(watch);
 		}
@@ -51,8 +55,8 @@ public class InterviewTest1Application implements CommandLineRunner {
 		
 		for(Watch watch : watches) {
 			
-			if(!watch.equals("available")) {
-				watchRepository.deleteAll(watches);
+			if(!watch.getAvailable()) {
+				watchRepository.deleteById(watch.getName());
 			}
 		}
 		
@@ -64,8 +68,8 @@ public class InterviewTest1Application implements CommandLineRunner {
 		Watch watch = new Watch(null, null, null, null);
 		watch.setAvailable(available);
 		watch.setName(name);
-		watch.setSold(value);
-		watch.setValue(sold);
+		watch.setSold(sold);
+		watch.setValue(value);
 
 		return watchRepository.save(watch);
 
@@ -93,9 +97,8 @@ public class InterviewTest1Application implements CommandLineRunner {
 		Watch watch = watchRepository.findById(name).orElse(null);
 
 		if (watch != null) {
-			watch.setValue(watch.getValue());
+			watch.setSold(watch.getSold() + 1);
 			return watchRepository.save(watch);
-
 		}
 
 		return watch;
@@ -108,7 +111,6 @@ public class InterviewTest1Application implements CommandLineRunner {
 	}
 
 	public void deleteWatch(String name) {
-
 		watchRepository.deleteById(name);
 	}
 }
