@@ -7,6 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "WATCH")
 public class Watch implements Serializable {
@@ -16,15 +25,15 @@ public class Watch implements Serializable {
 	 */
 	private static final long serialVersionUID = 349533338490577533L;
 	
-	public Watch() {}
-
-	public Watch(String name, Integer value, Integer sold, Boolean available) {
-
-		this.name = name;
-		this.value = value;
-		this.sold = sold;
-		this.available = available;
-	}
+//	public Watch() {}
+//
+//	public Watch(String name, Integer value, Integer sold, Boolean available) {
+//
+//		this.name = name;
+//		this.value = value;
+//		this.sold = sold;
+//		this.available = available;
+//	}
 
 	@Id
 	@Column(name = "NAME")
@@ -40,36 +49,36 @@ public class Watch implements Serializable {
 	@Column(name = "available")
 	private Boolean available;
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Integer getValue() {
-		return value;
-	}
-
-	public void setValue(Integer value) {
-		this.value = value;
-	}
-
-	public Integer getSold() {
-		return sold;
-	}
-
-	public void setSold(Integer sold) {
-		this.sold = sold;
-	}
-
-	public Boolean getAvailable() {
-		return this.available;
-	}
-
-	public void setAvailable(Boolean available) {
-		this.available = available;
-	}
-
+//	public String getName() {
+//		return name;
+//	}
+//
+//	public void setName(String name) {
+//		this.name = name;
+//	}
+//
+//	public Integer getValue() {
+//		return value;
+//	}
+//
+//	public void setValue(Integer value) {
+//		this.value = value;
+//	}
+//
+//	public Integer getSold() {
+//		return sold;
+//	}
+//
+//	public void setSold(Integer sold) {
+//		this.sold = sold;
+//	}
+//
+//	public Boolean getAvailable() {
+//		return available;
+//	}
+//
+//	public void setAvailable(Boolean available) {
+//		this.available = available;
+//	}
+	
 }

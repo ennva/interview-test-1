@@ -9,7 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import eu.cec.digit.comref.interview.persistent.domain.Item;
 import eu.cec.digit.comref.interview.persistent.domain.Watch;
+import eu.cec.digit.comref.interview.persistent.repository.ItemRepository;
 import eu.cec.digit.comref.interview.persistent.repository.WatchRepository;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,6 +23,9 @@ public class InterviewTest1Application implements CommandLineRunner {
 
 	@Autowired
 	private WatchRepository watchRepository;
+	
+	@Autowired
+	private ItemRepository itemRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(InterviewTest1Application.class, args);
@@ -110,5 +115,21 @@ public class InterviewTest1Application implements CommandLineRunner {
 
 	public void deleteWatch(String name) {
 		watchRepository.deleteById(name);
+	}
+	
+	public Item addItem(Integer id, String name) {
+		Item item = new Item();
+		item.setId(id);
+		item.setName(name);
+		
+		return itemRepository.save(item);
+	}
+	
+	public Item getItem(Integer id, String name) {
+		Item item = new Item();
+		item.setId(id);
+		item.setName(name);
+		
+		return itemRepository.findById(id).orElse(null);
 	}
 }

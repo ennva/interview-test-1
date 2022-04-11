@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import eu.cec.digit.comref.interview.persistent.domain.Item;
 import eu.cec.digit.comref.interview.persistent.domain.Watch;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootTest
 class InterviewTest1ApplicationTests {
 	
-	private static final Logger log = LoggerFactory.getLogger(InterviewTest1Application.class);
+	//private static final Logger log = LoggerFactory.getLogger(InterviewTest1Application.class);
 
 	@Autowired
 	private InterviewTest1Application interviewTest1Application;
@@ -167,5 +168,14 @@ class InterviewTest1ApplicationTests {
 
 		log.info("slow: {}, fast: {}", tookSlow, tookFast);
 
+	}
+	
+	@Test
+	public void testLombokGetterSetter() {
+		Item item = interviewTest1Application.addItem(1, "tuto");
+		
+		assertNotNull(item);
+		assertTrue(item.getId().equals(1));
+		assertTrue(item.getName().equals("tuto"));
 	}
 }
